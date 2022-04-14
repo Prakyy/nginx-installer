@@ -9,10 +9,8 @@ isRoot() {
 }
 
 match_sig () {
-  sig = 'gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg'
-  valid = "pub   rsa2048 2011-08-19 [SC] [expires: 2024-06-14]
-      573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
-uid                      nginx signing key <signing-key@nginx.com>"
+  sig = `gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg`
+  valid = 'pub rsa2048 2011-08-19 [SC] [expires: 2024-06-14] 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 uid nginx signing key <signing-key@nginx.com>'
   if [[ "$sig" != "$valid" ]]; then
       echo -$'\n\nSignature mismatch, please try again later...'
       exit 1
